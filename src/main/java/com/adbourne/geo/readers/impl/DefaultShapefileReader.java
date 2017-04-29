@@ -61,34 +61,32 @@ public class DefaultShapefileReader extends AbstractShapefileReader<Geometry> {
     }
 
     private Geometry readLine(FileChannel fileChannel, GeometryFactory geometryFactory) throws IOException {
-        double minX = readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN);
-        double minY = readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN);
-        double maxX = readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN);
-        double maxY = readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN);
+        readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN); // double minX
+        readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN); // double minY
+        readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN); // double maxX
+        readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN); // double maxY
 
         int numberOfParts = readInt(fileChannel, ByteOrder.LITTLE_ENDIAN);
         int numberOfTotalPoints = readInt(fileChannel, ByteOrder.LITTLE_ENDIAN);
 
-        int[] partIndexes = new int[numberOfParts];
-        for (int i = 0; i < numberOfParts; i++) {
-            partIndexes[i] = readInt(fileChannel, ByteOrder.LITTLE_ENDIAN);
+        for (int i = 0; i < numberOfParts; i++) { // Could create `int[] partIndexes` if ever needed
+            readInt(fileChannel, ByteOrder.LITTLE_ENDIAN);
         }
 
         return geometryFactory.createLineString(readCoordinates(fileChannel, numberOfTotalPoints));
     }
 
     private Polygon readPolygon(FileChannel fileChannel, GeometryFactory geometryFactory) throws IOException {
-        double minX = readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN);
-        double minY = readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN);
-        double maxX = readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN);
-        double maxY = readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN);
+        readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN); // double minX
+        readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN); // double minY
+        readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN); // double maxX
+        readDouble(fileChannel, ByteOrder.LITTLE_ENDIAN); // double maxY
 
         int numberOfParts = readInt(fileChannel, ByteOrder.LITTLE_ENDIAN);
         int numberOfTotalPoints = readInt(fileChannel, ByteOrder.LITTLE_ENDIAN);
 
-        int[] partIndexes = new int[numberOfParts];
-        for (int i = 0; i < numberOfParts; i++) {
-            partIndexes[i] = readInt(fileChannel, ByteOrder.LITTLE_ENDIAN);
+        for (int i = 0; i < numberOfParts; i++) { // Could create `int[] partIndexes` if ever needed
+            readInt(fileChannel, ByteOrder.LITTLE_ENDIAN);
         }
 
         return geometryFactory.createPolygon(readCoordinates(fileChannel, numberOfTotalPoints));

@@ -33,11 +33,11 @@ public class DefaultShapefile implements Shapefile<Geometry> {
     public List<Geometry> parse(File file) throws IOException {
 
         log.debug("Reading Shapefile at path '{}'", file.getCanonicalPath());
-        ShapefileMetadata shapefileMetadata = this.shapefileReader.readMetadata(file);
+        this.shapefileReader.readMetadata(file); // ShapefileMetadata shapefileMetadata
 
         File dbfFile = inferDbfFilePath(file);
         log.debug("Reading DBF file at path '{}'", file.getCanonicalPath());
-        DbfFileMetadata dbfFileMetadata = this.dbfFileReader.readMetadata(dbfFile);
+        this.dbfFileReader.readMetadata(dbfFile); // DbfFileMetadata dbfFileMetadata
 
         return this.shapefileReader.readShapeData(file);
 

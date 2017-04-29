@@ -91,7 +91,7 @@ public abstract class AbstractShapefileReader<T> implements ShapefileReader<T> {
     public List<T> readShapeData(FileInputStream fileInputStream) throws IOException {
         FileChannel fileChannel = fileInputStream.getChannel();
 
-        ShapefileMetadata shapefileMetadata = doReadMetadata(fileChannel);
+        doReadMetadata(fileChannel); // ShapefileMetadata shapefileMetadata
 
         List<T> geometries = new ArrayList<>();
 
