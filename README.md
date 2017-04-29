@@ -2,6 +2,9 @@
 A lightweight Shapefile parser implemented in pure Java. Parses a Shapefile into JTS geometries or 
 your chosen format.
 
+## CI
+[CI builds with Travis CI](https://travis-ci.org/adbourne/shapefile-java)
+
 ## Build + Install
 Easy as:
     
